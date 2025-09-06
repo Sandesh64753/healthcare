@@ -10,7 +10,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 
-const Services: React.FC = () => {
+const Services = () => {
   const services = [
     {
       icon: Camera,
@@ -119,7 +119,7 @@ const Services: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
-                <div className={`w-16 h-16 ${colorClasses[service.color as keyof typeof colorClasses]} rounded-full flex items-center justify-center mb-6`}>
+                <div className={`w-16 h-16 ${colorClasses[service.color]} rounded-full flex items-center justify-center mb-6`}>
                   <service.icon className="h-8 w-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>

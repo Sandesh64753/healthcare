@@ -1,7 +1,7 @@
 import React from 'react';
 import { Brain, Shield, Users, Award, Heart, Target } from 'lucide-react';
 
-const About: React.FC = () => {
+const About = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}

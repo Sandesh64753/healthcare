@@ -1,16 +1,7 @@
 import React from 'react';
 import { Stethoscope, Menu, X } from 'lucide-react';
 
-interface HeaderProps {
-  currentView: string;
-  setCurrentView: (view: string) => void;
-  isAuthenticated: boolean;
-  setIsAuthenticated: (auth: boolean) => void;
-  isMenuOpen: boolean;
-  setIsMenuOpen: (open: boolean) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ 
+const Header = ({ 
   currentView, 
   setCurrentView, 
   isAuthenticated, 

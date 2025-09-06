@@ -1,11 +1,7 @@
 import React from 'react';
 import { Bot, Shield, Clock, Users, ChevronRight, Heart, Activity } from 'lucide-react';
 
-interface HomeProps {
-  setCurrentView: (view: string) => void;
-}
-
-const Home: React.FC<HomeProps> = ({ setCurrentView }) => {
+const Home = ({ setCurrentView }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
       {/* Hero Section */}

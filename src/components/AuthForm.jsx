@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, User, Mail, Lock, Upload } from 'lucide-react';
 
-interface AuthFormProps {
-  isSignUp: boolean;
-  setCurrentView: (view: string) => void;
-  setIsAuthenticated: (auth: boolean) => void;
-}
-
-const AuthForm: React.FC<AuthFormProps> = ({ isSignUp, setCurrentView, setIsAuthenticated }) => {
+const AuthForm = ({ isSignUp, setCurrentView, setIsAuthenticated }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
-    profileImage: null as File | null
+    profileImage: null
   });
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       setFormData(prev => ({ ...prev, profileImage: file }));
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Simulate authentication
     setIsAuthenticated(true);

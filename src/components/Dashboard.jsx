@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { Bot, Upload, Camera, FileText, Clock, User, MessageCircle, Send, Image as ImageIcon } from 'lucide-react';
 
-interface Message {
-  id: string;
-  type: 'user' | 'ai';
-  content: string;
-  image?: string;
-  timestamp: Date;
-}
-
-const Dashboard: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([
+const Dashboard = () => {
+  const [messages, setMessages] = useState([
     {
       id: '1',
       type: 'ai',
@@ -19,18 +11,18 @@ const Dashboard: React.FC = () => {
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        const imageUrl = reader.result as string;
+        const imageUrl = reader.result;
         setUploadedImage(imageUrl);
         
         // Add user message with image
-        const userMessage: Message = {
+        const userMessage = {
           id: Date.now().toString() + '_user',
           type: 'user',
           content: 'I have uploaded a medical image for analysis.',
@@ -42,7 +34,7 @@ const Dashboard: React.FC = () => {
         
         // Simulate AI response
         setTimeout(() => {
-          const aiResponse: Message = {
+          const aiResponse = {
             id: Date.now().toString() + '_ai',
             type: 'ai',
             content: "I've analyzed your medical image. Based on the visual examination, I can see the anatomical structures clearly. However, please note that this is an AI-assisted analysis and should not replace professional medical consultation. I recommend discussing these findings with a qualified healthcare provider for a comprehensive evaluation. Would you like me to explain what I observe in the image or do you have specific questions about it?",
@@ -57,7 +49,7 @@ const Dashboard: React.FC = () => {
 
   const handleSendMessage = () => {
     if (inputMessage.trim()) {
-      const userMessage: Message = {
+      const userMessage = {
         id: Date.now().toString() + '_user',
         type: 'user',
         content: inputMessage,
@@ -78,7 +70,7 @@ const Dashboard: React.FC = () => {
         
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
         
-        const aiResponse: Message = {
+        const aiResponse = {
           id: Date.now().toString() + '_ai',
           type: 'ai',
           content: randomResponse,
@@ -89,7 +81,7 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
